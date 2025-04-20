@@ -1,0 +1,21 @@
+schemaVersion: 2.0.0
+metadata:
+  name: my-next-app
+components:
+  - name: dev
+    container:
+      image: public.ecr.aws/aws-mde/universal-image:latest
+commands:
+  - id: install
+    exec:
+      component: dev
+      commandLine: "npm install"
+  - id: build
+    exec:
+      component: dev
+      commandLine: "npm run build"
+  # Note: There's no test script in package.json, but we can add a command that runs lint as a basic check
+  - id: test
+    exec:
+      component: dev
+      commandLine: "npm run lint"

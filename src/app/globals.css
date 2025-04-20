@@ -1,0 +1,184 @@
+/* Import TailwindCSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties - Design Tokens */
+:root {
+  /* Light theme variables - Fixed syntax and enhanced colors */
+  --background: #ffffff;
+  --foreground: #333333;
+  --heading: #1a365d;
+  --muted: #4a5568;
+  --accent: #3182ce;
+  --accent-hover: #2c5282;
+  --card-bg: #f7fafc;
+  
+  /* Header specific colors */
+  --header-bg: #2b6cb0;
+  --header-text: #ffffff;
+  --header-hover: #ebf8ff;
+  --header-hover-text: #2c5282;
+  
+  /* Button colors */
+  --btn-primary-bg: #3182ce;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #2c5282;
+  --btn-secondary-bg: #e2e8f0;
+  --btn-secondary-text: #2d3748;
+  --btn-secondary-hover: #cbd5e0;
+}
+
+/* Theme configuration */
+@layer base {
+  :root {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-heading: var(--heading);
+    --color-muted: var(--muted);
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-card-bg: var(--card-bg);
+    
+    /* Header colors */
+    --color-header-bg: var(--header-bg);
+    --color-header-text: var(--header-text);
+    --color-header-hover: var(--header-hover);
+    --color-header-hover-text: var(--header-hover-text);
+    
+    /* Button colors */
+    --color-btn-primary-bg: var(--btn-primary-bg);
+    --color-btn-primary-text: var(--btn-primary-text);
+    --color-btn-primary-hover: var(--btn-primary-hover);
+    --color-btn-secondary-bg: var(--btn-secondary-bg);
+    --color-btn-secondary-text: var(--btn-secondary-text);
+    --color-btn-secondary-hover: var(--btn-secondary-hover);
+    
+    /* Typography */
+    --font-primary: var(--font-geist-sans);
+    --font-code: var(--font-geist-mono);
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a202c;
+    --foreground: #e2e8f0;
+    --heading: #f7fafc;
+    --muted: #a0aec0;
+    --accent: #4299e1;
+    --accent-hover: #63b3ed;
+    --card-bg: #2d3748;
+    
+    /* Header specific colors */
+    --header-bg: #2c5282;
+    --header-text: #ffffff;
+    --header-hover: #ebf8ff;
+    --header-hover-text: #4299e1;
+    
+    /* Button colors */
+    --btn-primary-bg: #4299e1;
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover: #63b3ed;
+    --btn-secondary-bg: #4a5568;
+    --btn-secondary-text: #e2e8f0;
+    --btn-secondary-hover: #718096;
+  }
+}
+
+/* Base styles */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-primary), Arial, Helvetica, sans-serif;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+  font-weight: 700;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* Utility classes for text contrast levels */
+.text-contrast-high {
+  color: var(--color-heading);
+}
+  
+.text-contrast-medium {
+  color: var(--color-foreground);
+}
+  
+.text-contrast-low {
+  color: var(--color-muted);
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-btn-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-btn-secondary-bg);
+  color: var(--color-btn-secondary-text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-btn-secondary-hover);
+}
+
+/* Header specific styles */
+.header {
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+}
+
+.header-link {
+  color: var(--color-header-text);
+}
+
+.header-link:hover {
+  background-color: var(--color-header-hover);
+  color: var(--color-header-hover-text);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+
