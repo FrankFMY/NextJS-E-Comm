@@ -25,6 +25,7 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  isLoaded: boolean; // Add a flag to indicate if the cart has been loaded from localStorage
 }
 
 // Create the cart context with default values
@@ -36,6 +37,7 @@ const CartContext = createContext<CartContextType>({
   clearCart: () => {},
   totalItems: 0,
   totalPrice: 0,
+  isLoaded: false,
 });
 
 // Custom hook to use the cart context
@@ -43,29 +45,34 @@ export const useCart = () => useContext(CartContext);
 
 // Cart provider component
 export function CartProvider({ children }: { children: ReactNode }) {
-  // Initialize cart state from localStorage if available, otherwise empty array
+  // Initialize cart state with empty array first to avoid hydration mismatch
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   
-  // Load cart from localStorage on component mount
+  // Load cart data from localStorage after component mounts (client-side only)
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem('cart');
       if (savedCart) {
         setItems(JSON.parse(savedCart));
       }
+      setIsLoaded(true);
     } catch (error) {
       console.error('Failed to load cart from localStorage:', error);
+      setIsLoaded(true);
     }
   }, []);
   
-  // Save cart to localStorage whenever it changes
+  // Save cart to localStorage whenever it changes, but only after initial load
   useEffect(() => {
-    try {
-      localStorage.setItem('cart', JSON.stringify(items));
-    } catch (error) {
-      console.error('Failed to save cart to localStorage:', error);
+    if (isLoaded) {
+      try {
+        localStorage.setItem('cart', JSON.stringify(items));
+      } catch (error) {
+        console.error('Failed to save cart to localStorage:', error);
+      }
     }
-  }, [items]);
+  }, [items, isLoaded]);
   
   // Add a product to the cart
   const addToCart = (product: Product) => {
@@ -132,8 +139,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       clearCart,
       totalItems,
       totalPrice,
+      isLoaded,
     }}>
       {children}
     </CartContext.Provider>
   );
 }
+

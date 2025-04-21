@@ -11,7 +11,7 @@ export default function CartPage() {
       <div className="max-w-7xl mx-auto py-12">
         <h1 className="text-3xl font-bold mb-6">Корзина</h1>
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
-          <p className="text-xl mb-6">Ваша корзина пуста</p>
+          <p className="text-xl mb-6 text-black">Ваша корзина пуста</p>
           <Link 
             href="/products" 
             className="inline-block px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
